@@ -32,7 +32,7 @@ $(function() { //-shorthand document.ready
 	function fetch() {
 		$("#api-results").empty();
 		var fetchItem = $(this).attr("data-name");
-		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + fetchItem.replace(" ", "+") + "&api_key=dc6zaTOxFJmzC&limit=10&offset=" + offset;
+		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + fetchItem.replace(" ", "+") + "&api_key=dc6zaTOxFJmzC&limit=10&offset=" + offset;
 		var arrAdded = [];
 		var arrOne = 0;
 
