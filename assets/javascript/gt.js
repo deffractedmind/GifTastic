@@ -43,13 +43,22 @@ $(function() { //-shorthand document.ready
 
 			for (j=0; j<response.data.length; j++) {
 
-				// $("#api-results").prepend('<img class="image" srcset="' + response.data[j].images.fixed_height_still.url + '" src="'+response.data[j].images.fixed_height.url + '">');
 				var rating = response.data[j].rating.toUpperCase();
 				var freeze = response.data[j].images.fixed_height_still.url;
 				var move = response.data[j].images.fixed_height.url;
+				
+				// $("#api-results").prepend('<div class="parent">');
+				// $(".parent").prepend('<div class="rate">');
+				// $(".rate")
+				// 	.text("Rated: " + response.data[j].rating.toUpperCase())
+				// 	.append('<div class="img-class">');
+				// $(".img-class").append('<img class="image">'); 
+				// $(".image")
+				// 	.attr("title", 'Rated: ' + response.data[j].rating.toUpperCase())
+				// 	.attr("src", response.data[j].images.fixed_height_still.url)
+				// 	.attr("data-src2", response.data[j].images.fixed_height.url);
 
-				$("#api-results").prepend('<div class="parent"><div class="rate">Rated: '+ rating + '<div class="img-class"><img class="image" title="Rated: ' + rating + '" srcset="' + freeze + '" src="'+ move + '"></div></div></div>');
-				// $("#api-results").append('<div class="rate"></div>');
+				$("#api-results").prepend('<div class="parent"><div class="rate">Rated: '+ rating + '<div class="img-class"><img class="image" title="Rated: ' + rating + '" src="' + freeze + '" data-src2="'+ move + '"></div></div></div>');
 
 			}
 
@@ -64,18 +73,18 @@ $(function() { //-shorthand document.ready
 			//- begin toggle between still and animated switch
 			$(".image").on("click", function(){
 				var that = $(this);
-				var imgFreeze = that.attr("srcset");
-				var imgMove = that.attr("src");
+				var imgFreeze = that.attr("src");
+				var imgMove = that.attr("data-src2");
 				var imgCurrent = imgFreeze;
 
 				if (imgCurrent !== imgMove) {
-					that.attr("srcset", imgMove);
-					that.attr("src", imgFreeze);
+					that.attr("src", imgMove);
+					that.attr("data-src2", imgFreeze);
 					imgCurrent = imgMove;
 				}
 				else {
-					that.attr("srcset", imgFreeze);
-					that.attr("src", imgMove);
+					that.attr("src", imgFreeze);
+					that.attr("data-src2", imgMove);
 					imgCurrent = imgFreeze;
 				}
 
